@@ -21,7 +21,7 @@ class Mailer
      * 
      * @return bool
      */
-    public static function send(string $email, string $message): bool
+    public function send(string $email, string $message): bool
     {
         if (empty($email)) {
             throw new InvalidArgumentException();
