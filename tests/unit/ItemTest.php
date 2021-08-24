@@ -17,17 +17,14 @@ class ItemTest extends TestCase
         $this->assertNotEmpty($this->item->getDescription());
     }
 
-    public function testIDisAnInteger()
-    {
-        $itemChild = new App\ItemChild();
-
-        $this->assertIsInt($itemChild->getID());
-    }
-
     public function testTokenIsString()
     {
-        $itemChild = new App\ItemChild();
+        $reflaction = new ReflectionClass(Item::class);
+        $method = $reflaction->getMethod('getToken');
+        $method->setAccessible(true);
 
-        $this->assertIsString($itemChild->getToken());
+        $result = $method->invoke($this->item);
+
+        $this->assertIsString($result);
     }
 }
